@@ -13,6 +13,7 @@ Currently implemented are:
 import logging
 import subprocess as sp
 import time
+from types import StringTypes
 
 
 try:
@@ -37,7 +38,7 @@ class BagNotRunningError(BagError, AttributeError):
 
     """
     def __init__(self, action="talk to"):
-        message = "Cannot {} process while bag is not running.".format(action)
+        message = u"Cannot {} process while bag is not running.".format(action)
         super(BagNotRunningError, self).__init__(message)
 
 
@@ -47,19 +48,19 @@ class Bag(object):
 
     Parameters
     ----------
-    filenames : str | List[str]
+    filenames : StringTypes | List[StringTypes]
         The location of the bag files.
 
     Attributes
     ----------
-    filenames : List[str]
+    filenames : List[StringTypes]
         The location of the bag files.
     process : subprocess.Popen
         The process containing the running bag file.
 
     """
     def __init__(self, filenames):
-        if isinstance(filenames, str):
+        if isinstance(filenames, StringTypes):
             filenames = [filenames]
         self.filenames = filenames
         self.process = None
