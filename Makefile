@@ -58,12 +58,8 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	
-		coverage run --source pyrosbag setup.py test
-	
-		coverage report -m
-		coverage html
-		$(BROWSER) htmlcov/index.html
+	py.test --cov-report html --cov pyrosbag
+	$(BROWSER) htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	sphinx-apidoc -o docs/ pyrosbag
