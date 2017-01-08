@@ -28,14 +28,14 @@ class BagError(Exception):
     """
 
 
-class BagNotPlayingError(BagError, AttributeError):
+class BagNotRunningError(BagError, AttributeError):
     """
-    Raised when interaction is attempted with a bag file which is not playing.
+    Raised when interaction is attempted with a bag file which is not running.
 
     """
     def __init__(self, action="talk to"):
-        message = "Cannot {} process while bag is not playing.".format(action)
-        super(BagNotPlayingError, self).__init__(message)
+        message = "Cannot {} process while bag is not running.".format(action)
+        super(BagNotRunningError, self).__init__(message)
 
 
 class Bag(object):
@@ -52,7 +52,7 @@ class Bag(object):
     filenames : List[str]
         The location of the bag files.
     process : subprocess.Popen
-        The process containing the playing bag file.
+        The process containing the running bag file.
 
     """
     def __init__(self, filenames):
@@ -61,6 +61,101 @@ class Bag(object):
         self.filenames = filenames
         self.process = None
 
+    def send(self, string):
+        """
+        Write something to process stdin.
+
+        Parameters
+        ----------
+        string : str
+            The string to write.
+
+        Raises
+        ------
+        BagNotRunningError
+            If interaction is attempted when the bag file is not running.
+
+        """
+        try:
+            self.process.stdin.write(string)
+        except AttributeError:
+            raise BagNotRunningError()
+
+    def stop(self):
+        """
+        Stop a running bag file.
+
+        Raises
+        ------
+        BagNotRunningError
+            If the bag file is not running.
+
+        """
+        try:
+            self.process.terminate()
+            self.process.kill()
+        except AttributeError:
+            raise BagNotRunningError("stop")
+
+    def wait(self):
+        """
+        Block until process is complete.
+
+        """
+        self.process.wait()
+
+    @property
+    def is_running(self):
+        """
+        Check whether the bag file is running.
+
+        Returns
+        -------
+        bool
+            The bag file is running.
+
+        """
+        return self.process.poll() is None
+
+    def __enter__(self):
+        """
+        Context manager entry point.
+
+        """
+        return self
+
+    # noinspection PyUnusedLocal
+    def __exit__(self, exc_type, exc_value, traceback):
+        """
+        Context manager exit point.
+
+        """
+        time.sleep(1)
+        if self.is_running:
+            if exc_type is None:
+                logger.warning("Exited while process is still running.")
+                logger.info("Hint: Use Bag.wait() or Bag.play(wait=True) "
+                            "to wait until completion.")
+            else:
+                self.stop()
+
+        if exc_type == KeyboardInterrupt:
+            logger.info("User exit.")
+            return True
+        elif exc_type is not None:
+            logger.critical("An error occurred. Exiting.")
+        else:
+            logger.info("Goodbye!")
+
+    def __repr__(self):
+        return "<Bag({})>".format(self.filenames)
+
+
+class BagPlayer(Bag):
+    """
+    Play Bag files.
+
+    """
     def play(self, wait=False, stdin=sp.PIPE, stdout=None, stderr=None,
              quiet=None, immediate=None, start_paused=None, queue_size=None,
              publish_clock=None, clock_publish_freq=None, delay=None,
@@ -140,26 +235,6 @@ class Bag(object):
         if wait:
             self.wait()
 
-    def send(self, string):
-        """
-        Write something to process stdin.
-
-        Parameters
-        ----------
-        string : str
-            The string to write.
-
-        Raises
-        ------
-        BagNotPlayingError
-            If interaction is attempted when the bag file is not playing.
-
-        """
-        try:
-            self.process.stdin.write(string)
-        except AttributeError:
-            raise BagNotPlayingError()
-
     def pause(self):
         """
         Pause the bag file.
@@ -181,71 +256,3 @@ class Bag(object):
         """
         self.send("s")
 
-    def stop(self):
-        """
-        Stop a playing bag file.
-
-        Raises
-        ------
-        BagNotPlayingError
-            If the bag file is not playing.
-
-        """
-        try:
-            self.process.terminate()
-            self.process.kill()
-        except AttributeError:
-            raise BagNotPlayingError("stop")
-
-    def wait(self):
-        """
-        Block until process is complete.
-
-        """
-        self.process.wait()
-
-    @property
-    def is_playing(self):
-        """
-        Check whether the bag file is playing.
-
-        Returns
-        -------
-        bool
-            The bag file is playing.
-
-        """
-        return self.process.poll() is None
-
-    def __enter__(self):
-        """
-        Context manager entry point.
-
-        """
-        return self
-
-    # noinspection PyUnusedLocal
-    def __exit__(self, exc_type, exc_value, traceback):
-        """
-        Context manager exit point.
-
-        """
-        time.sleep(1)
-        if self.is_playing:
-            if exc_type is None:
-                logger.warning("Exited while process is still running.")
-                logger.info("Hint: Use Bag.wait() or Bag.play(wait=True) "
-                            "to wait until completion.")
-            else:
-                self.stop()
-
-        if exc_type == KeyboardInterrupt:
-            logger.info("User exit.")
-            return True
-        elif exc_type is not None:
-            logger.critical("An error occurred. Exiting.")
-        else:
-            logger.info("Goodbye!")
-
-    def __repr__(self):
-        return "<Bag({})>".format(self.filenames)
