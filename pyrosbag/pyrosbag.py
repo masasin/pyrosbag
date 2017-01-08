@@ -105,8 +105,16 @@ class Bag(object):
         """
         Block until process is complete.
 
+        Raises
+        ------
+        BagNotRunningError
+            If the bag file is not running.
+
         """
-        self.process.wait()
+        try:
+            self.process.wait()
+        except AttributeError:
+            raise BagNotRunningError("wait for")
 
     @property
     def is_running(self):
