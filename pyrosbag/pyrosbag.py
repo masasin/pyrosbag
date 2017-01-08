@@ -127,7 +127,10 @@ class Bag(object):
             The bag file is running.
 
         """
-        return self.process.poll() is None
+        try:
+            return self.process.poll() is None
+        except AttributeError:
+            return False
 
     def __enter__(self):
         """
