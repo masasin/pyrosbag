@@ -1,10 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-Programmatically play and control a ROS bag file.
+Programmatically control a ROS bag file.
 
-Note that, in order to access the data within the bag file, the rosbag_python
-package is extremely convenient. It is available on PyPI.
+This module implements the base class, and the various functions.
+
+Currently implemented are:
+
+    * ``rosbag play``
 
 """
 import logging

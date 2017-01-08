@@ -48,7 +48,7 @@ napoleon_use_admonition_for_references = True
 napoleon_include_special_with_doc = True
 
 # Add any paths that contain templates here, relative to this directory.
-templates_path = ['_templates']
+# templates_path = ['_templates']
 
 # The suffix of source filenames.
 source_suffix = '.rst'
@@ -148,7 +148,7 @@ html_theme = 'sphinx_rtd_theme'
 # here, relative to this directory. They are copied after the builtin
 # static files, so a file named "default.css" will overwrite the builtin
 # "default.css".
-html_static_path = ['_static']
+# html_static_path = ['_static']
 
 # If not '', a 'Last updated on:' timestamp is inserted at every page
 # bottom, using the given strftime format.
@@ -264,7 +264,7 @@ texinfo_documents = [
      u'ROS Bag Python Controller Documentation',
      u'Jean Nassar',
      'pyrosbag',
-     'One line description of project.',
+     'Programmatically control ROS Bag files with Python',
      'Miscellaneous'),
 ]
 
@@ -279,3 +279,6 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 #texinfo_no_detailmenu = False
+
+# Suppress warnings.
+suppress_warnings = ['image.nonlocal_uri']

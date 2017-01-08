@@ -1,5 +1,5 @@
 Welcome to ROS Bag Python Controller's documentation!
-======================================
+=====================================================
 
 Contents:
 
@@ -12,6 +12,7 @@ Contents:
    contributing
    authors
    history
+   modules
 
 Indices and tables
 ==================
