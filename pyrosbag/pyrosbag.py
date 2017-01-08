@@ -255,4 +255,3 @@ class BagPlayer(Bag):
 
         """
         self.send("s")
-
