@@ -13,7 +13,10 @@ Currently implemented are:
 import logging
 import subprocess as sp
 import time
-from types import StringTypes
+try:
+    from types import StringTypes
+except ImportError:
+    StringTypes = str
 
 
 try:
