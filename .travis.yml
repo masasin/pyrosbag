@@ -23,14 +23,10 @@ deploy:
     tags: true
 env:
 - TOXENV=py36
-- TOXENV=py35
+# - TOXENV=py35
 - TOXENV=py34
 - TOXENV=py27
 install: pip install -U tox-travis
 language: python
-python:
-  - 2.7
-  - 3.4
-  - 3.5
-  - 3.6
+python: 3.6
 script: tox
