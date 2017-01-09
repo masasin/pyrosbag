@@ -9,6 +9,9 @@ ROS Bag Python Controller
 .. image:: https://img.shields.io/travis/masasin/pyrosbag.svg
         :target: https://travis-ci.org/masasin/pyrosbag
 
+.. image:: https://coveralls.io/repos/github/masasin/pyrosbag/badge.svg?branch=master
+        :target: https://coveralls.io/github/masasin/pyrosbag?branch=master
+
 .. image:: https://readthedocs.org/projects/pyrosbag/badge/?version=latest
         :target: https://pyrosbag.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
@@ -17,6 +20,8 @@ ROS Bag Python Controller
      :target: https://pyup.io/repos/github/masasin/pyrosbag/
      :alt: Updates
 
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg
+     :target: https://github.com/masasin/pyrosbag
 
 Programmatically control ROS Bag files with Python. Look at ``rosbag_pandas``
 on PyPI for an excellent package which allows you to work with the data
