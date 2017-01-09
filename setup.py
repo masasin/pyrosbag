@@ -20,7 +20,7 @@ test_requirements = [
 setup(
     name='pyrosbag',
     version='0.1.0',
-    description="Programmatically con",
+    description="Programmatically control ROS Bag files with Python",
     long_description=readme + '\n\n' + history,
     author="Jean Nassar",
     author_email='jeannassar5@gmail.com',
@@ -34,7 +34,8 @@ setup(
     install_requires=requirements,
     license="MIT license",
     zip_safe=False,
-    keywords='pyrosbag',
+    keywords=['pyrosbag', 'ros', 'bag'],
+    download_url = "https://github.com/masasin/pyrosbag/tarball/0.1.0"
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
