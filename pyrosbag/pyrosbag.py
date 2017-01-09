@@ -243,15 +243,15 @@ class BagPlayer(Bag):
             arguments.append("--queue={}".format(queue_size))
         if publish_clock:
             arguments.append("--clock")
-        if clock_publish_freq:
+        if clock_publish_freq is not None:
             arguments.append("--hz={}".format(clock_publish_freq))
-        if delay:
+        if delay is not None:
             arguments.append("--delay={}".format(delay))
-        if publish_rate_multiplier:
+        if publish_rate_multiplier is not None:
             arguments.append("--rate={}".format(publish_rate_multiplier))
-        if start_time:
+        if start_time is not None:
             arguments.append("--start={}".format(start_time))
-        if duration:
+        if duration is not None:
             arguments.append("--duration={}".format(duration))
         if loop:
             arguments.append("-l")
