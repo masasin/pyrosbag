@@ -127,8 +127,8 @@ class TestBag(object):
                 with prb.Bag("example.bag") as context_bag:
                     context_bag.process = MagicMock()
                     context_bag.process.poll.return_value = None
-                mock_logger.warning.assert_called_once()
-                mock_logger.info.assert_called()
+                assert mock_logger.warning.called
+                assert mock_logger.info.called
 
     def test_exit_while_running_with_error_stops_but_no_warning(self):
         with patch.object(prb, "logger", autospec=True) as mock_logger:
@@ -140,9 +140,9 @@ class TestBag(object):
                             context_bag.process.poll.return_value = None
                             raise prb.BagError
                     except prb.BagError:
-                        mock_logger.warning.assert_not_called()
-                        mock_logger.critical.assert_called_once()
-                        mock_logger.info.assert_not_called()
+                        assert not mock_logger.warning.called
+                        assert mock_logger.critical.called
+                        assert not mock_logger.info.called
                         mock_stop.assert_called_once_with(context_bag)
 
     def test_normal_exceptions_get_reraised(self):
@@ -161,9 +161,9 @@ class TestBag(object):
                     context_bag.process = MagicMock()
                     context_bag.process.poll.return_value = None
                     raise KeyboardInterrupt
-                mock_logger.warning.assert_not_called()
-                mock_logger.critical.assert_not_called()
-                mock_logger.info.assert_called_once()
+                assert not mock_logger.warning.called
+                assert not mock_logger.critical.called
+                assert mock_logger.info.called
 
     @hyp.given(hst.text())
     def test_repr_with_single_filename(self, filename):
