@@ -23,9 +23,12 @@ ROS Bag Python Controller
 .. image:: https://img.shields.io/badge/license-MIT-blue.svg
      :target: https://github.com/masasin/pyrosbag
 
-Programmatically control ROS Bag files with Python. Look at ``rosbag_pandas``
-on PyPI for an excellent package which allows you to work with the data
-directly.
+Programmatically control `ROS Bag <http://wiki.ros.org/rosbag>`_ files with
+Python.
+
+Also look at `rosbag_pandas <https://github.com/aktaylor08/RosbagPandas>`_,
+also available on PyPI, for an good package which allows you to work with the
+data directly.
 
 * Free software: MIT license
 * Documentation: https://pyrosbag.readthedocs.io.
