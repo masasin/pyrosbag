@@ -14,14 +14,13 @@ from cryptography.hazmat.primitives.serialization import load_pem_public_key
 from cryptography.hazmat.backends import default_backend
 from cryptography.hazmat.primitives.asymmetric.padding import PKCS1v15
 
-
 try:
     from urllib import urlopen
 except:
     from urllib.request import urlopen
 
 
-GITHUB_REPO = '{{ cookiecutter.github_username }}/{{ cookiecutter.project_slug }}'
+GITHUB_REPO = 'masasin/pyrosbag'
 TRAVIS_CONFIG_FILE = os.path.join(
     os.path.dirname(os.path.abspath(__file__)), '.travis.yml')
 
