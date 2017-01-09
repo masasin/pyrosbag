@@ -158,7 +158,7 @@ class Bag(object):
         Context manager exit point.
 
         """
-        time.sleep(1)
+        time.sleep(1)  # For pretty output.
         if self.is_running:
             if exc_type is None:
                 logger.warning("Exited while process is still running.")
