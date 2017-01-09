@@ -35,7 +35,7 @@ setup(
     license="MIT license",
     zip_safe=False,
     keywords=['pyrosbag', 'ros', 'bag'],
-    download_url = "https://github.com/masasin/pyrosbag/tarball/0.1.0"
+    download_url = "https://github.com/masasin/pyrosbag/tarball/0.1.0",
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',
         'Intended Audience :: Developers',
