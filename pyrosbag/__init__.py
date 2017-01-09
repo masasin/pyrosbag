@@ -6,4 +6,4 @@ Note that, in order to access the data within the bag file, the
 """
 __author__ = """Jean Nassar"""
 __email__ = 'jeannassar5@gmail.com'
-__version__ = '0.0.1'
+__version__ = '0.1.0'

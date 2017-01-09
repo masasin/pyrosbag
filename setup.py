@@ -19,7 +19,7 @@ test_requirements = [
 
 setup(
     name='pyrosbag',
-    version='0.0.1',
+    version='0.1.0',
     description="Programmatically control ROS Bag files with Python",
     long_description=readme + '\n\n' + history,
     author="Jean Nassar",
