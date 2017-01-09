@@ -35,7 +35,15 @@ class BagError(Exception):
     """
 
 
-class BagNotRunningError(BagError, AttributeError):
+class MissingBagError(BagError):
+    """
+    Bag file was not specified.
+
+    """
+    msg = "No Bag files were specified."
+
+
+class BagNotRunningError(BagError):
     """
     Raised when interaction is attempted with a bag file which is not running.
 
@@ -63,6 +71,8 @@ class Bag(object):
 
     """
     def __init__(self, filenames):
+        if filenames in ("", u"", []):
+            raise MissingBagError
         if isinstance(filenames, StringTypes):
             filenames = [filenames]
         self.filenames = filenames
