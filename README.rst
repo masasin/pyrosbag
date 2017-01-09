@@ -9,8 +9,8 @@ ROS Bag Python Controller
 .. image:: https://img.shields.io/travis/masasin/pyrosbag.svg
         :target: https://travis-ci.org/masasin/pyrosbag
 
-.. image:: https://coveralls.io/repos/github/masasin/pyrosbag/badge.svg?branch=master
-        :target: https://coveralls.io/github/masasin/pyrosbag?branch=master
+.. image:: https://codecov.io/gh/masasin/pyrosbag/branch/master/graph/badge.svg
+        :target: https://codecov.io/gh/masasin/pyrosbag
 
 .. image:: https://readthedocs.org/projects/pyrosbag/badge/?version=latest
         :target: https://pyrosbag.readthedocs.io/en/latest/?badge=latest
