@@ -29,6 +29,8 @@ env:
 install: pip install -U tox-travis
 language: python
 python:
-  - "2.7"
-  - "3.4"
+  - 2.7
+  - 3.4
+  - 3.5
+  - 3.6
 script: tox
