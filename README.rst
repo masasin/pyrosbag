@@ -18,10 +18,9 @@ ROS Bag Python Controller
      :alt: Updates
 
 
-Programmatically control ROS Bag files with Python.
-
-Currently implements playback.
-
+Programmatically control ROS Bag files with Python. Look at ``rosbag_pandas``
+on PyPI for an excellent package which allows you to work with the data
+directly.
 
 * Free software: MIT license
 * Documentation: https://pyrosbag.readthedocs.io.
@@ -30,7 +29,21 @@ Currently implements playback.
 Features
 --------
 
-* TODO
+* General Bag class
+* ``rosbag play``
+
+To do
+-----
+
+* check
+* compress
+* decompress
+* filter
+* fix
+* help
+* info
+* record
+* reindex
 
 Credits
 ---------
