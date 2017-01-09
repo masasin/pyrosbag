@@ -143,7 +143,7 @@ class TestBag(object):
                         mock_logger.warning.assert_not_called()
                         mock_logger.critical.assert_called_once()
                         mock_logger.info.assert_not_called()
-                        mock_stop.assert_called_once()
+                        mock_stop.assert_called_once_with(context_bag)
 
     def test_normal_exceptions_get_reraised(self):
         with patch.object(prb, "time", autospec=True):
@@ -309,4 +309,4 @@ class TestBagPlayer(object):
             with patch.object(prb.BagPlayer, "wait",
                               autospec=True) as mock_wait:
                 self.running_bag.play(wait=True)
-                mock_wait.assert_called_once()
+                mock_wait.assert_called_once_with(self.running_bag)
